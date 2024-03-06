@@ -1,5 +1,13 @@
 # Amazon EKS AMI Build Specification
 
+## This branch will be deleted on **March 30, 2024**!
+
+The default branch of this repository has changed to `main`.
+
+This change coincides with a reorganization of the project sources. You may continue using the `master` branch as you update your downstream dependencies, but you'll need to explicitly check out the `master` branch after February 29, 2024.
+
+---
+
 This repository contains resources and configuration scripts for building a
 custom Amazon EKS AMI with [HashiCorp Packer](https://www.packer.io/). This is
 the same configuration that Amazon EKS uses to create the official Amazon
@@ -29,13 +37,14 @@ invoking Packer directly. You can initiate the build process by running the
 following command in the root of this repository:
 
 ```bash
+# build an AMI with the latest Kubernetes version
 make
+
+# build an AMI with a specific Kubernetes version
+make k8s=1.29
 ```
-The Makefile chooses a particular kubelet binary to use per kubernetes version which you can [view here](Makefile).
-To build an Amazon EKS Worker AMI for a particular Kubernetes version run the following command
-```bash
-make 1.23 ## Build a Amazon EKS Worker AMI for k8s 1.23
-```
+
+The Makefile chooses a particular kubelet binary to use per Kubernetes version which you can [view here](Makefile).
 
 > **Note**
 > The default instance type to build this AMI does not qualify for the AWS free tier.
@@ -43,7 +52,7 @@ make 1.23 ## Build a Amazon EKS Worker AMI for k8s 1.23
 
 ## 👩‍💻 Using the AMI
 
-The [AMI user guide](doc/USER_GUIDE.md) has details about the AMI's internals, and the [EKS user guide](https://docs.aws.amazon.com/eks/latest/userguide/launch-templates.html#launch-template-custom-ami) explains how to use a custom AMI in a managed node group.
+The [AMI user guide](https://awslabs.github.io/amazon-eks-ami/USER_GUIDE/) has details about the AMI's internals, and the [EKS user guide](https://docs.aws.amazon.com/eks/latest/userguide/launch-templates.html#launch-template-custom-ami) explains how to use a custom AMI in a managed node group.
 
 ## 🔒 Security
 
